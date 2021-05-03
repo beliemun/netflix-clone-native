@@ -3,11 +3,26 @@ import { createStackNavigator } from "@react-navigation/stack";
 import Tabs from "./Tabs";
 import Detail from "../screens/Detail";
 
-const Stack = createStackNavigator<RootStackParamList>();
+const RootStack = createStackNavigator<RootStackParamList>();
 
-export default () => (
-  <Stack.Navigator>
-    <Stack.Screen name="Tabs" component={Tabs} />
-    <Stack.Screen name="Detail" component={Detail} />
-  </Stack.Navigator>
-);
+const StackNavigator: React.FC = () => {
+  return (
+    <RootStack.Navigator
+      initialRouteName="Tabs"
+      screenOptions={{
+        headerStyle: {
+          backgroundColor: "black",
+          borderBottomColor: "transparent",
+          shadowColor: "transparent",
+        },
+        headerTintColor: "white",
+        headerBackTitleVisible: false,
+      }}
+    >
+      <RootStack.Screen name="Tabs" component={Tabs} />
+      <RootStack.Screen name="Detail" component={Detail} />
+    </RootStack.Navigator>
+  );
+};
+
+export default StackNavigator;

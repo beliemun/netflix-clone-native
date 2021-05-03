@@ -2,13 +2,8 @@ import React from "react";
 import { View, Text } from "react-native";
 import { StackNavigationProp } from "@react-navigation/stack";
 
-type HomeScreenNavigationProps = StackNavigationProp<
-  RootStackParamList,
-  "Favorites"
->;
-
 type Props = {
-  navigation: HomeScreenNavigationProps;
+  navigation: StackNavigationProp<RootStackParamList, "Tabs">;
 };
 
 const Favorites: React.FC<Props> = ({ navigation }) => (
