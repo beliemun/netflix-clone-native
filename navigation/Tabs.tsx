@@ -6,7 +6,7 @@ import {
 import Movie from "../screens/Movie";
 import Tv from "../screens/Tv";
 import Search from "../screens/Search";
-import Favorites from "../screens/Favorites";
+import Discovery from "../screens/Discovery";
 import { RouteProp } from "@react-navigation/core";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
@@ -42,7 +42,7 @@ const TabNavigator: React.FC<Props> = ({ navigation, route }) => {
             case "Search":
               iconName += "search";
               break;
-            case "Favorites":
+            case "Discovery":
               iconName += "heart";
               break;
           }
@@ -69,7 +69,7 @@ const TabNavigator: React.FC<Props> = ({ navigation, route }) => {
       <RootTab.Screen name="Movie" component={Movie} />
       <RootTab.Screen name="Tv" component={Tv} />
       <RootTab.Screen name="Search" component={Search} />
-      <RootTab.Screen name="Favorites" component={Favorites} />
+      <RootTab.Screen name="Discovery" component={Discovery} />
     </RootTab.Navigator>
   );
 };
