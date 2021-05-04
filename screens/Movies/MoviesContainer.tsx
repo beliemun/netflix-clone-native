@@ -1,16 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { View, Text, Button } from "react-native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { BottomTabNavigationProp } from "@react-navigation/bottom-tabs";
-import { RouteProp } from "@react-navigation/core";
-import { movieApi } from "../api";
+import { movieApi } from "../../api";
+import MoivesPresenter from "./MoviesPresenter";
 
 type Props = {
   navigation: StackNavigationProp<RootStackParamList, "Tabs">;
 };
 
-const Movie: React.FC<Props> = ({ navigation }) => {
-  const [movies, setMovies] = useState({
+const Movies: React.FC<Props> = ({ navigation }) => {
+  const [movies, setMovies] = useState<IMovies>({
+    loading: true,
     nowPlaying: [],
     nowPlayingError: null,
     popular: [],
@@ -28,6 +27,7 @@ const Movie: React.FC<Props> = ({ navigation }) => {
     const [popular, popularError] = await movieApi.popular();
     const [upcoming, upcomingError] = await movieApi.nowPlaying();
     setMovies({
+      loading: false,
       nowPlaying,
       nowPlayingError,
       popular,
@@ -37,11 +37,7 @@ const Movie: React.FC<Props> = ({ navigation }) => {
     });
   };
 
-  return (
-    <View style={{ flex: 1, backgroundColor: "black" }}>
-      <Text style={{ color: "white" }}>{movies.nowPlaying?.length}</Text>
-    </View>
-  );
+  return <MoivesPresenter {...movies} />;
 };
 
-export default Movie;
+export default Movies;

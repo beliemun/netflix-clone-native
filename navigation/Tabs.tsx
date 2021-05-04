@@ -3,7 +3,7 @@ import {
   BottomTabNavigationProp,
   createBottomTabNavigator,
 } from "@react-navigation/bottom-tabs";
-import Movie from "../screens/Movie";
+import Movie from "../screens/Movies/MoviesContainer";
 import Tv from "../screens/Tv";
 import Search from "../screens/Search";
 import Discovery from "../screens/Discovery";
@@ -11,7 +11,6 @@ import { RouteProp } from "@react-navigation/core";
 import { getFocusedRouteNameFromRoute } from "@react-navigation/native";
 import { Ionicons } from "@expo/vector-icons";
 import { Platform } from "react-native";
-import { IconProps } from "@expo/vector-icons/build/createIconSet";
 
 const RootTab = createBottomTabNavigator<RootTabParamList>();
 
