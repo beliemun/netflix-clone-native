@@ -1,13 +1,13 @@
 import React from "react";
-import { Dimensions, ScrollView } from "react-native";
+import { Dimensions } from "react-native";
 import styled from "styled-components/native";
 import Swiper from "react-native-web-swiper";
-import Slider from "../../components/Movies/Slider";
-import Title from "../../components/Title";
+import Slider from "../../components/Slider";
 import Vertical from "../../components/Vertical";
-import Horizontal from "../../components/Movies/Horizontal";
+import Horizontal from "../../components/Horizontal";
 import LoadingContainer from "../../components/LoadingContainer";
 import HorizontalSlider from "../../components/HorizontalSlider";
+import List from "../../components/List";
 
 const { height: HEIGHT } = Dimensions.get("window");
 
@@ -38,10 +38,13 @@ const MoviePresenter: React.FC<IMovies> = (movies) => {
           </>
         </HorizontalSlider>
 
-        <Title title={"Coming Soon"} />
-        {upcoming.map((movie) => (
-          <Horizontal key={movie.id} media={movie} type={"movie"} />
-        ))}
+        <List title="Coming Soon">
+          <>
+            {upcoming.map((movie) => (
+              <Horizontal key={movie.id} media={movie} type={"movie"} />
+            ))}
+          </>
+        </List>
       </>
     </LoadingContainer>
   );

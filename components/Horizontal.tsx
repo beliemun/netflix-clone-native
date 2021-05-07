@@ -1,9 +1,7 @@
 import React from "react";
-import { TouchableOpacity } from "react-native";
 import styled from "styled-components/native";
-import { formatDate, trimText } from "../../utils";
-import Poster from "../Poster";
-import Votes from "../Votes";
+import { formatDate, trimText } from "../utils";
+import Poster from "./Poster";
 
 const Container = styled.TouchableOpacity`
   flex-direction: row;

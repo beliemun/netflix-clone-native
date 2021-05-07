@@ -44,3 +44,11 @@ interface IShow {
   backdrop_path: string;
   first_air_date: string;
 }
+
+interface ISearchResult {
+  loading: boolean;
+  movies: Array<any>;
+  shows: Array<any>;
+  moviesError: any;
+  showsError: any;
+}

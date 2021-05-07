@@ -1,7 +1,6 @@
 import React from "react";
 import { ScrollView } from "react-native";
 import Title from "./Title";
-import Vertical from "./Vertical";
 
 interface IProps {
   title: string;

@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components/native";
-import { imgaeApi } from "../../api";
-import { trimText } from "../../utils";
-import Poster from "../Poster";
-import Votes from "../Votes";
+import { imgaeApi } from "../api";
+import { trimText } from "../utils";
+import Poster from "./Poster";
+import Votes from "./Votes";
 
 // Swiper 내부 최상단 컨테이너에 높이를 100%라고 써주지 않으면 웹에서 이상하게 나옴
 const Container = styled.View`
