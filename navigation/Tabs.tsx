@@ -54,7 +54,7 @@ const TabNavigator: React.FC<Props> = ({ navigation, route }) => {
           );
         },
       })}
-      initialRouteName="Search"
+      initialRouteName="Movie"
       tabBarOptions={{
         style: {
           backgroundColor: "black",

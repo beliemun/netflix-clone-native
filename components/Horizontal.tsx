@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/core";
 import React from "react";
 import styled from "styled-components/native";
 import { formatDate, trimText } from "../utils";
@@ -34,10 +35,12 @@ const Overview = styled.Text`
 `;
 
 const Horizontal: React.FC<IMedia> = ({ media, type }) => {
+  const navigation = useNavigation();
+  const goToDetail = () => navigation.navigate("Detail", { media, type });
   if (type === "movie") {
-    const { id, title, release_date, overview, poster_path } = media as IMovie;
+    const { title, release_date, overview, poster_path } = media as IMovie;
     return (
-      <Container>
+      <Container onPress={goToDetail}>
         <Poster url={poster_path} />
         <Data>
           <Title>{trimText(title, 30)}</Title>
@@ -47,9 +50,9 @@ const Horizontal: React.FC<IMedia> = ({ media, type }) => {
       </Container>
     );
   } else {
-    const { id, name, first_air_date, overview, poster_path } = media as IShow;
+    const { name, first_air_date, overview, poster_path } = media as IShow;
     return (
-      <Container>
+      <Container onPress={goToDetail}>
         <Poster url={poster_path} />
         <Data>
           <Title>{trimText(name, 30)}</Title>

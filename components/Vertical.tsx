@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/core";
 import React from "react";
 import styled from "styled-components/native";
 import { trimText } from "../utils";
@@ -17,10 +18,13 @@ const Title = styled.Text`
 `;
 
 const Vertical: React.FC<IMedia> = ({ media, type }) => {
+  const navigation = useNavigation();
+  const goToDetail = () => navigation.navigate("Detail", { media, type });
+
   if (type === "movie") {
     const { title, vote_average, poster_path } = media as IMovie;
     return (
-      <Container>
+      <Container onPress={goToDetail}>
         <Poster url={poster_path} />
         <Title>{trimText(title, 12)}</Title>
         <Votes votes={vote_average} />
@@ -29,7 +33,7 @@ const Vertical: React.FC<IMedia> = ({ media, type }) => {
   } else {
     const { name, vote_average, poster_path } = media as IShow;
     return (
-      <Container>
+      <Container onPress={goToDetail}>
         <Poster url={poster_path} />
         <Title>{trimText(name, 12)}</Title>
         <Votes votes={vote_average} />

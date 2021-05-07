@@ -1,3 +1,4 @@
+import { useNavigation } from "@react-navigation/core";
 import React from "react";
 import styled from "styled-components/native";
 import { imgaeApi } from "../api";
@@ -60,6 +61,10 @@ const ButtonText = styled.Text`
 
 const Slider: React.FC<IMovie> = (movie) => {
   const { title, overview, vote_average, poster_path, backdrop_path } = movie;
+  const navigation = useNavigation();
+  const goToDetail = () =>
+    navigation.navigate("Detail", { media: movie, type: "movie" });
+
   return (
     <Container>
       <Image source={{ uri: imgaeApi(backdrop_path) }} blurRadius={2} />
@@ -71,7 +76,7 @@ const Slider: React.FC<IMovie> = (movie) => {
             <Votes votes={vote_average} />
           </VotesContainer>
           <Overview>{trimText(overview, 100)}</Overview>
-          <Button>
+          <Button onPress={goToDetail}>
             <ButtonText>View details</ButtonText>
           </Button>
         </Data>

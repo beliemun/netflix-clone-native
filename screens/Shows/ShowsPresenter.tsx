@@ -16,11 +16,16 @@ import HorizontalSlider from "../../components/HorizontalSlider";
 import List from "../../components/List";
 import Horizontal from "../../components/Horizontal";
 
-const ShowsPresenter: React.FC<IShows> = (shows) => {
+interface IProps {
+  shows: IShows;
+  getData: () => Promise<void>;
+}
+
+const ShowsPresenter: React.FC<IProps> = ({ shows, getData }) => {
   const { loading, aringToday, onTheAir, topRated, popular } = shows;
 
   return (
-    <LoadingContainer loading={loading}>
+    <LoadingContainer loading={loading} getData={getData}>
       <>
         <HorizontalSlider title={"Popular TV Shows"}>
           <>

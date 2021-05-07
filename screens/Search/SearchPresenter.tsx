@@ -17,11 +17,10 @@ interface IProps {
   shows: IShow[];
   keyword: string;
   onChange: (text: string) => void;
-  onSubmit: () => void;
+  onSubmit: () => Promise<void>;
 }
 
 const SearchPresenter: React.FC<IProps> = ({
-  loading,
   movies,
   shows,
   keyword,
@@ -29,32 +28,34 @@ const SearchPresenter: React.FC<IProps> = ({
   onSubmit,
 }) => {
   return (
-    <Container>
-      <Input
-        placeholder={"Write a keyword"}
-        value={keyword}
-        onChange={onChange}
-        onSubmit={onSubmit}
-      />
-      {movies.length > 0 && (
-        <HorizontalSlider title="Movie Results">
-          <>
-            {movies.map((movie) => (
-              <Vertical key={movie.id} media={movie} type={"movie"} />
-            ))}
-          </>
-        </HorizontalSlider>
-      )}
-      {shows.length > 0 && (
-        <HorizontalSlider title="TV Results">
-          <>
-            {shows.map((show) => (
-              <Vertical key={show.id} media={show} type={"show"} />
-            ))}
-          </>
-        </HorizontalSlider>
-      )}
-    </Container>
+    <LoadingContainer loading={false} getData={onSubmit}>
+      <>
+        <Input
+          placeholder={"Write a keyword"}
+          value={keyword}
+          onChange={onChange}
+          onSubmit={onSubmit}
+        />
+        {movies.length > 0 && (
+          <HorizontalSlider title="Movie Results">
+            <>
+              {movies.map((movie) => (
+                <Vertical key={movie.id} media={movie} type={"movie"} />
+              ))}
+            </>
+          </HorizontalSlider>
+        )}
+        {shows.length > 0 && (
+          <HorizontalSlider title="TV Results">
+            <>
+              {shows.map((show) => (
+                <Vertical key={show.id} media={show} type={"show"} />
+              ))}
+            </>
+          </HorizontalSlider>
+        )}
+      </>
+    </LoadingContainer>
   );
 };
 

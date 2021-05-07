@@ -37,7 +37,7 @@ const MoviesContainer: React.FC<IProps> = ({ navigation }) => {
     });
   };
 
-  return <MoivesPresenter {...movies} />;
+  return <MoivesPresenter getData={getData} movies={movies} />;
 };
 
 export default MoviesContainer;

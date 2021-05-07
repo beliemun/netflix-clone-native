@@ -1,5 +1,5 @@
 import React from "react";
-import { createStackNavigator } from "@react-navigation/stack";
+import { createStackNavigator, TransitionSpecs } from "@react-navigation/stack";
 import Tabs from "./Tabs";
 import Detail from "../screens/Detail";
 

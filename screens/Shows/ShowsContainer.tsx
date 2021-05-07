@@ -42,7 +42,7 @@ const ShowsContainer: React.FC<IProps> = ({ navigation }) => {
     });
   };
 
-  return <ShowsPresenter {...shows} />;
+  return <ShowsPresenter getData={getData} shows={shows} />;
 };
 
 export default ShowsContainer;

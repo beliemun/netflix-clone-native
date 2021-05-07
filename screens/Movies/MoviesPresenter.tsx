@@ -17,10 +17,15 @@ const SliderContainer = styled.View`
   margin-bottom: 30px;
 `;
 
-const MoviePresenter: React.FC<IMovies> = (movies) => {
+interface IProps {
+  movies: IMovies;
+  getData: () => Promise<void>;
+}
+
+const MoviePresenter: React.FC<IProps> = ({ movies, getData }) => {
   const { loading, nowPlaying, popular, upcoming } = movies;
   return (
-    <LoadingContainer loading={loading}>
+    <LoadingContainer loading={loading} getData={getData}>
       <>
         <SliderContainer>
           <Swiper controlsEnabled={false} loop timeout={3}>
