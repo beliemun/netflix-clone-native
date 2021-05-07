@@ -4,7 +4,7 @@ import {
   createBottomTabNavigator,
 } from "@react-navigation/bottom-tabs";
 import Movie from "../screens/Movies/MoviesContainer";
-import Tv from "../screens/Tv";
+import Tv from "../screens/Shows";
 import Search from "../screens/Search";
 import Discovery from "../screens/Discovery";
 import { RouteProp } from "@react-navigation/core";
@@ -54,7 +54,7 @@ const TabNavigator: React.FC<Props> = ({ navigation, route }) => {
           );
         },
       })}
-      initialRouteName="Movie"
+      initialRouteName="Tv"
       tabBarOptions={{
         style: {
           backgroundColor: "black",

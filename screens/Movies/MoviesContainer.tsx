@@ -3,11 +3,11 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import { movieApi } from "../../api";
 import MoivesPresenter from "./MoviesPresenter";
 
-type Props = {
+interface IProps {
   navigation: StackNavigationProp<RootStackParamList, "Tabs">;
-};
+}
 
-const Movies: React.FC<Props> = ({ navigation }) => {
+const MoviesContainer: React.FC<IProps> = ({ navigation }) => {
   const [movies, setMovies] = useState<IMovies>({
     loading: true,
     nowPlaying: [],
@@ -25,7 +25,7 @@ const Movies: React.FC<Props> = ({ navigation }) => {
   const getData = async () => {
     const [nowPlaying, nowPlayingError] = await movieApi.nowPlaying();
     const [popular, popularError] = await movieApi.popular();
-    const [upcoming, upcomingError] = await movieApi.nowPlaying();
+    const [upcoming, upcomingError] = await movieApi.upcoming();
     setMovies({
       loading: false,
       nowPlaying,
@@ -40,4 +40,4 @@ const Movies: React.FC<Props> = ({ navigation }) => {
   return <MoivesPresenter {...movies} />;
 };
 
-export default Movies;
+export default MoviesContainer;
