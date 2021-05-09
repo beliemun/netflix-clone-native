@@ -16,6 +16,8 @@ const DetailContainer: React.FC = () => {
     vote_average,
     poster_path,
     backdrop_path,
+    spoken_languages,
+    status,
   } = props;
   const [loading, setLoading] = useState(false);
   const [media, setMedia] = useState<IMedia>({
@@ -27,6 +29,8 @@ const DetailContainer: React.FC = () => {
     vote_average,
     poster_path,
     backdrop_path,
+    spoken_languages,
+    status,
   });
 
   useLayoutEffect(() => {
@@ -48,6 +52,9 @@ const DetailContainer: React.FC = () => {
         vote_average: getMovie.vote_average,
         poster_path: getMovie.poster_path,
         backdrop_path: getMovie.backdrop_path,
+        spoken_languages: getMovie.spoken_languages,
+        status: getMovie.status,
+        videos: getMovie.videos,
       });
     } else {
       setMedia({
@@ -59,6 +66,9 @@ const DetailContainer: React.FC = () => {
         vote_average: getMovie.vote_average,
         poster_path: getMovie.poster_path,
         backdrop_path: getMovie.backdrop_path,
+        spoken_languages: getMovie.spoken_languages,
+        status: getMovie.status,
+        videos: getMovie.videos,
       });
     }
   };

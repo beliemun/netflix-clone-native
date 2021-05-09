@@ -25,6 +25,8 @@ export const getMedia = (
     vote_average: media.vote_average,
     poster_path: media.poster_path,
     backdrop_path: media.backdrop_path,
+    spoken_languages: media.spoken_languages,
+    status: media.status,
   };
   if (mediaType === "movie") {
     const { title, release_date } = media as IMovie;

@@ -25,8 +25,8 @@ const Curtain = styled.View`
 
 const Container = styled.View`
   flex-direction: row;
-  padding: 10px;
   margin-top: 140px;
+  margin-bottom: 10px;
 `;
 
 const Info = styled.View`
@@ -49,7 +49,21 @@ const Overview = styled.Text`
   color: white;
   opacity: 0.8;
   line-height: 20px;
-  padding: 10px;
+  padding: 0 10px;
+`;
+
+const DataName = styled.Text`
+  color: white;
+  font-size: 16px;
+  font-weight: bold;
+  margin: 20px 0 5px;
+`;
+
+const DataValue = styled.Text`
+  flex: 0;
+  color: white;
+  opacity: 0.8;
+  padding: 5px 10px;
 `;
 
 interface IProps {
@@ -61,15 +75,19 @@ interface IProps {
 const DetailPresenter: React.FC<IProps> = ({ media, loading, getData }) => {
   const {
     id,
+    mediaType,
     title,
+    date,
     overview,
     vote_average,
     poster_path,
     backdrop_path,
-    date,
+    spoken_languages,
+    status,
+    videos,
   } = media;
   return (
-    <View style={{ flex: 1, backgroundColor: "black" }}>
+    <View style={{ flex: 1, backgroundColor: "black", padding: 10 }}>
       <Backdrop source={{ uri: imgaeApi(backdrop_path) }} />
       <Curtain />
       <ScrollView>
@@ -85,7 +103,22 @@ const DetailPresenter: React.FC<IProps> = ({ media, loading, getData }) => {
             </VotesContainer>
           </Info>
         </Container>
+        <DataName>Overview</DataName>
         <Overview>{overview ? overview : "(No overview)"}</Overview>
+        {spoken_languages && (
+          <>
+            <DataName>Language</DataName>
+            {spoken_languages.map((language, index) => (
+              <DataValue key={index}>{language.name}</DataValue>
+            ))}
+          </>
+        )}
+        {status && (
+          <>
+            <DataName>Status</DataName>
+            <DataValue>{status}</DataValue>
+          </>
+        )}
       </ScrollView>
     </View>
   );

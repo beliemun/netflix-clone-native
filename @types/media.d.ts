@@ -12,6 +12,24 @@ interface IMedia {
   vote_average: number;
   poster_path: string;
   backdrop_path: string;
+  spoken_languages?: Array<ISpokenLanguage>;
+  status: string;
+  videos?: Array<IVideo>;
+}
+
+interface ISpokenLanguage {
+  english_name: string;
+  iso_639_1: string;
+  name: string;
+}
+
+interface IVideo {
+  id: string;
+  iso_3166_1: string;
+  iso_639_1: string;
+  key: string;
+  name: string;
+  site: string;
 }
 
 type IMediaType = "movie" | "show";
@@ -46,6 +64,8 @@ interface IMovie {
   poster_path: string;
   backdrop_path: string;
   release_date: string;
+  spoken_languages?: Array<ISpokenLanguage>;
+  status: string;
 }
 
 interface IShow {
@@ -56,6 +76,8 @@ interface IShow {
   poster_path: string;
   backdrop_path: string;
   first_air_date: string;
+  spoken_languages?: Array<ISpokenLanguage>;
+  status: string;
 }
 
 interface ISearchResult {
