@@ -22,7 +22,7 @@ const Data = styled.View`
   padding-left: 10px;
 `;
 
-const ReleaseDate = styled.Text`
+const Date = styled.Text`
   color: white;
   font-size: 14px;
   margin-bottom: 5px;
@@ -34,34 +34,30 @@ const Overview = styled.Text`
   opacity: 0.8;
 `;
 
-const Horizontal: React.FC<IMedia> = ({ media, type }) => {
+const Horizontal: React.FC<IMedia> = (props) => {
+  const {
+    id,
+    mediaType,
+    title,
+    date,
+    overview,
+    vote_average,
+    poster_path,
+    backdrop_path,
+  } = props;
   const navigation = useNavigation();
-  const goToDetail = () => navigation.navigate("Detail", { media, type });
-  if (type === "movie") {
-    const { title, release_date, overview, poster_path } = media as IMovie;
-    return (
-      <Container onPress={goToDetail}>
-        <Poster url={poster_path} />
-        <Data>
-          <Title>{trimText(title, 30)}</Title>
-          <ReleaseDate>{formatDate(release_date)}</ReleaseDate>
-          <Overview>{trimText(overview, 150)}</Overview>
-        </Data>
-      </Container>
-    );
-  } else {
-    const { name, first_air_date, overview, poster_path } = media as IShow;
-    return (
-      <Container onPress={goToDetail}>
-        <Poster url={poster_path} />
-        <Data>
-          <Title>{trimText(name, 30)}</Title>
-          <ReleaseDate>{formatDate(first_air_date)}</ReleaseDate>
-          <Overview>{trimText(overview, 150)}</Overview>
-        </Data>
-      </Container>
-    );
-  }
+  const goToDetail = () => navigation.navigate("Detail", { ...props });
+
+  return (
+    <Container onPress={goToDetail}>
+      <Poster url={poster_path} />
+      <Data>
+        <Title>{trimText(title, 30)}</Title>
+        <Date>{formatDate(date)}</Date>
+        <Overview>{trimText(overview, 150)}</Overview>
+      </Data>
+    </Container>
+  );
 };
 
 export default Horizontal;

@@ -1,7 +1,20 @@
-interface IMedia {
-  media: IMovie | IShow;
+interface IMediaObj {
+  data: IMovie | IShow;
   type: "movie" | "show";
 }
+
+interface IMedia {
+  id: number;
+  mediaType: IMediaType;
+  title: string;
+  date: string;
+  overview: string;
+  vote_average: number;
+  poster_path: string;
+  backdrop_path: string;
+}
+
+type IMediaType = "movie" | "show";
 
 interface IMovies {
   loading: boolean;
@@ -11,16 +24,6 @@ interface IMovies {
   popularError: any;
   upcoming: Array<any>;
   upcomingError: any;
-}
-
-interface IMovie {
-  id: number;
-  title: string;
-  overview: string;
-  vote_average: number;
-  poster_path: string;
-  backdrop_path: string;
-  release_date: string;
 }
 
 interface IShows {
@@ -33,6 +36,16 @@ interface IShows {
   topRatedError: any;
   popular: Array<any>;
   popularError: any;
+}
+
+interface IMovie {
+  id: number;
+  title: string;
+  overview: string;
+  vote_average: number;
+  poster_path: string;
+  backdrop_path: string;
+  release_date: string;
 }
 
 interface IShow {

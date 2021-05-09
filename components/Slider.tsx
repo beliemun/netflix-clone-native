@@ -59,11 +59,19 @@ const ButtonText = styled.Text`
   color: white;
 `;
 
-const Slider: React.FC<IMovie> = (movie) => {
-  const { title, overview, vote_average, poster_path, backdrop_path } = movie;
+const Slider: React.FC<IMedia> = (props) => {
+  const {
+    id,
+    mediaType,
+    title,
+    date,
+    overview,
+    vote_average,
+    poster_path,
+    backdrop_path,
+  } = props;
   const navigation = useNavigation();
-  const goToDetail = () =>
-    navigation.navigate("Detail", { media: movie, type: "movie" });
+  const goToDetail = () => navigation.navigate("Detail", { ...props });
 
   return (
     <Container>

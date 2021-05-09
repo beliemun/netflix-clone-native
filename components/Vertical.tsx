@@ -17,29 +17,27 @@ const Title = styled.Text`
   margin: 10px 0 5px;
 `;
 
-const Vertical: React.FC<IMedia> = ({ media, type }) => {
+const Vertical: React.FC<IMedia> = (props) => {
+  const {
+    id,
+    mediaType,
+    title,
+    date,
+    overview,
+    vote_average,
+    poster_path,
+    backdrop_path,
+  } = props;
   const navigation = useNavigation();
-  const goToDetail = () => navigation.navigate("Detail", { media, type });
+  const goToDetail = () => navigation.navigate("Detail", { ...props });
 
-  if (type === "movie") {
-    const { title, vote_average, poster_path } = media as IMovie;
-    return (
-      <Container onPress={goToDetail}>
-        <Poster url={poster_path} />
-        <Title>{trimText(title, 12)}</Title>
-        <Votes votes={vote_average} />
-      </Container>
-    );
-  } else {
-    const { name, vote_average, poster_path } = media as IShow;
-    return (
-      <Container onPress={goToDetail}>
-        <Poster url={poster_path} />
-        <Title>{trimText(name, 12)}</Title>
-        <Votes votes={vote_average} />
-      </Container>
-    );
-  }
+  return (
+    <Container onPress={goToDetail}>
+      <Poster url={poster_path} />
+      <Title>{trimText(title, 12)}</Title>
+      <Votes votes={vote_average} />
+    </Container>
+  );
 };
 
 export default Vertical;

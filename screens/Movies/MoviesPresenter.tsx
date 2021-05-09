@@ -8,6 +8,7 @@ import Horizontal from "../../components/Horizontal";
 import LoadingContainer from "../../components/LoadingContainer";
 import HorizontalSlider from "../../components/HorizontalSlider";
 import List from "../../components/List";
+import { getMedia } from "../../utils";
 
 const { height: HEIGHT } = Dimensions.get("window");
 
@@ -30,7 +31,7 @@ const MoviePresenter: React.FC<IProps> = ({ movies, getData }) => {
         <SliderContainer>
           <Swiper controlsEnabled={false} loop timeout={3}>
             {nowPlaying.map((movie: IMovie) => (
-              <Slider key={movie.id} {...movie} />
+              <Slider key={movie.id} {...getMedia(movie, "movie")} />
             ))}
           </Swiper>
         </SliderContainer>
@@ -38,7 +39,7 @@ const MoviePresenter: React.FC<IProps> = ({ movies, getData }) => {
         <HorizontalSlider title={"Popular Movies"}>
           <>
             {popular.map((movie) => (
-              <Vertical key={movie.id} media={movie} type={"movie"} />
+              <Vertical key={movie.id} {...getMedia(movie, "movie")} />
             ))}
           </>
         </HorizontalSlider>
@@ -46,7 +47,7 @@ const MoviePresenter: React.FC<IProps> = ({ movies, getData }) => {
         <List title="Coming Soon">
           <>
             {upcoming.map((movie) => (
-              <Horizontal key={movie.id} media={movie} type={"movie"} />
+              <Horizontal key={movie.id} {...getMedia(movie, "movie")} />
             ))}
           </>
         </List>

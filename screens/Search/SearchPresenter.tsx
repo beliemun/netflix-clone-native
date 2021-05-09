@@ -1,7 +1,5 @@
 import React from "react";
 import styled from "styled-components/native";
-import { movieApi } from "../../api";
-import Horizontal from "../../components/Horizontal";
 import HorizontalSlider from "../../components/HorizontalSlider";
 import Input from "../../components/Input";
 import LoadingContainer from "../../components/LoadingContainer";
