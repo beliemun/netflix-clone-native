@@ -3,10 +3,6 @@ import { StackNavigationProp } from "@react-navigation/stack";
 import SearchPresenter from "./SearchPresenter";
 import { movieApi, tvApi } from "../../api";
 
-type Props = {
-  navigation: StackNavigationProp<RootStackParamList, "Tabs">;
-};
-
 const SearchContainer: React.FC = () => {
   const [keyword, setKeyword] = useState("");
   const [results, setResults] = useState({

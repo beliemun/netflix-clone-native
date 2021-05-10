@@ -60,17 +60,7 @@ const ButtonText = styled.Text`
 `;
 
 const Slider: React.FC<IMedia> = (props) => {
-  const {
-    id,
-    mediaType,
-    title,
-    date,
-    overview,
-    vote_average,
-    poster_path,
-    backdrop_path,
-    spoken_languages,
-  } = props;
+  const { title, overview, vote_average, poster_path, backdrop_path } = props;
   const navigation = useNavigation();
   const goToDetail = () => navigation.navigate("Detail", { ...props });
 

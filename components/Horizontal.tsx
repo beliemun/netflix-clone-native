@@ -35,17 +35,7 @@ const Overview = styled.Text`
 `;
 
 const Horizontal: React.FC<IMedia> = (props) => {
-  const {
-    id,
-    mediaType,
-    title,
-    date,
-    overview,
-    vote_average,
-    poster_path,
-    backdrop_path,
-    spoken_languages,
-  } = props;
+  const { title, date, overview, poster_path } = props;
   const navigation = useNavigation();
   const goToDetail = () => navigation.navigate("Detail", { ...props });
 

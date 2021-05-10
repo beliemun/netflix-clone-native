@@ -4,6 +4,7 @@ import HorizontalSlider from "../../components/HorizontalSlider";
 import Input from "../../components/Input";
 import LoadingContainer from "../../components/LoadingContainer";
 import Vertical from "../../components/Vertical";
+import { getMedia } from "../../utils";
 
 const Container = styled.ScrollView`
   background-color: black;
@@ -38,7 +39,7 @@ const SearchPresenter: React.FC<IProps> = ({
           <HorizontalSlider title="Movie Results">
             <>
               {movies.map((movie) => (
-                <Vertical key={movie.id} media={movie} type={"movie"} />
+                <Vertical key={movie.id} {...getMedia(movie, "movie")} />
               ))}
             </>
           </HorizontalSlider>
@@ -47,7 +48,7 @@ const SearchPresenter: React.FC<IProps> = ({
           <HorizontalSlider title="TV Results">
             <>
               {shows.map((show) => (
-                <Vertical key={show.id} media={show} type={"show"} />
+                <Vertical key={show.id} {...getMedia(show, "show")} />
               ))}
             </>
           </HorizontalSlider>

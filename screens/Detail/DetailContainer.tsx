@@ -1,7 +1,8 @@
 import { useNavigation, useRoute } from "@react-navigation/core";
 import React, { useLayoutEffect, useState } from "react";
-import { movieApi } from "../../api";
+import { movieApi, tvApi } from "../../api";
 import DetailPresenter from "./DetailPresenter";
+import * as WebBrowser from "expo-web-browser";
 
 const DetailContainer: React.FC = () => {
   const navigation = useNavigation();
@@ -16,8 +17,9 @@ const DetailContainer: React.FC = () => {
     vote_average,
     poster_path,
     backdrop_path,
-    spoken_languages,
     status,
+    imdb_id,
+    spoken_languages,
   } = props;
   const [loading, setLoading] = useState(false);
   const [media, setMedia] = useState<IMedia>({
@@ -29,8 +31,9 @@ const DetailContainer: React.FC = () => {
     vote_average,
     poster_path,
     backdrop_path,
-    spoken_languages,
     status,
+    imdb_id,
+    spoken_languages,
   });
 
   useLayoutEffect(() => {
@@ -41,8 +44,8 @@ const DetailContainer: React.FC = () => {
   }, [id]);
 
   const getData = async () => {
-    const [getMovie, getMovieError] = await movieApi.movie(media.id);
     if (mediaType === "movie") {
+      const [getMovie, getMovieError] = await movieApi.movie(media.id);
       setMedia({
         id: getMovie.id,
         mediaType,
@@ -54,26 +57,40 @@ const DetailContainer: React.FC = () => {
         backdrop_path: getMovie.backdrop_path,
         spoken_languages: getMovie.spoken_languages,
         status: getMovie.status,
-        videos: getMovie.videos,
+        imdb_id: getMovie.imdb_id,
+        videos: getMovie.videos.results,
       });
     } else {
+      const [getShow, getShowError] = await tvApi.tv(media.id);
       setMedia({
-        id: getMovie.id,
+        id: getShow.id,
         mediaType,
-        title: getMovie.name,
-        date: getMovie.first_air_date,
-        overview: getMovie.overview,
-        vote_average: getMovie.vote_average,
-        poster_path: getMovie.poster_path,
-        backdrop_path: getMovie.backdrop_path,
-        spoken_languages: getMovie.spoken_languages,
-        status: getMovie.status,
-        videos: getMovie.videos,
+        title: getShow.name,
+        date: getShow.first_air_date,
+        overview: getShow.overview,
+        vote_average: getShow.vote_average,
+        poster_path: getShow.poster_path,
+        backdrop_path: getShow.backdrop_path,
+        spoken_languages: getShow.spoken_languages,
+        status: getShow.status,
+        imdb_id: getShow.imdb_id,
+        videos: getShow.videos.results,
       });
     }
   };
 
-  return <DetailPresenter media={media} loading={loading} getData={getData} />;
+  const openBrowser = async (url: string): Promise<void> => {
+    await WebBrowser.openBrowserAsync(url);
+  };
+
+  return (
+    <DetailPresenter
+      media={media}
+      loading={loading}
+      getData={getData}
+      openBrowser={openBrowser}
+    />
+  );
 };
 
 export default DetailContainer;

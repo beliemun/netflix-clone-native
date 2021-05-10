@@ -14,6 +14,7 @@ interface IMedia {
   backdrop_path: string;
   spoken_languages?: Array<ISpokenLanguage>;
   status: string;
+  imdb_id: string;
   videos?: Array<IVideo>;
 }
 
@@ -64,8 +65,9 @@ interface IMovie {
   poster_path: string;
   backdrop_path: string;
   release_date: string;
-  spoken_languages?: Array<ISpokenLanguage>;
   status: string;
+  imdb_id: string;
+  spoken_languages?: Array<ISpokenLanguage>;
 }
 
 interface IShow {
@@ -76,8 +78,9 @@ interface IShow {
   poster_path: string;
   backdrop_path: string;
   first_air_date: string;
-  spoken_languages?: Array<ISpokenLanguage>;
   status: string;
+  imdb_id: string;
+  spoken_languages?: Array<ISpokenLanguage>;
 }
 
 interface ISearchResult {

@@ -4,7 +4,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import AppLoading from "expo-app-loading";
 import { Asset } from "expo-asset";
 import * as Font from "expo-font";
-import { Ionicons } from "@expo/vector-icons";
+import { Ionicons, FontAwesome } from "@expo/vector-icons";
 import Stack from "./navigation/Stack";
 
 const cacheImages = (images: any) =>
@@ -26,7 +26,7 @@ export default function App() {
       "https://www.google.com/logos/doodles/2021/labour-day-2021-6753651837108920.9-l.png",
       require("./assets/splash.png"),
     ]);
-    const fonts = cacheFonts([Ionicons.font]);
+    const fonts = cacheFonts([Ionicons.font, FontAwesome.font]);
     await Promise.all([...images, ...fonts]);
   };
 
