@@ -44,7 +44,7 @@ const MoviePresenter: React.FC<IProps> = ({ movies, getData }) => {
           </>
         </HorizontalSlider>
 
-        <List title="Coming Soon">
+        <List title="Coming Soon!">
           <>
             {upcoming.map((movie) => (
               <Horizontal key={movie.id} {...getMedia(movie, "movie")} />
